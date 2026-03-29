@@ -3,7 +3,7 @@ g<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GORIGE VINOD KUMAR | Python Developer & Data Scientist</title>
+    <title>GORIGE VINOD KUMAR | Python Developer & Data Scientist & Data Analyst</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Exo+2:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -165,6 +165,41 @@ g<!DOCTYPE html>
             align-items: center;
         }
 
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: row;
+                position: relative;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            nav.nav-desktop {
+                display: none;
+            }
+
+            .nav-mobile {
+                display: flex;
+            }
+
+            .nav-mobile.active {
+                right: 0;
+            }
+        }
+
         .logo {
             font-family: 'Orbitron', sans-serif;
             font-size: 1.5rem;
@@ -186,6 +221,50 @@ g<!DOCTYPE html>
             gap: 8px;
             flex-wrap: wrap;
             justify-content: center;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 4px;
+            z-index: 1001;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-mobile {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 80vw;
+            max-width: 350px;
+            height: 100vh;
+            background: rgba(10, 10, 15, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 100px 30px 30px;
+            flex-direction: column;
+            gap: 20px;
+            transition: right 0.3s ease;
+            z-index: 1000;
+            box-shadow: -5px 0 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .nav-mobile.active {
+            right: 0;
+        }
+
+        .nav-mobile .nav-link {
+            font-size: 1.1rem;
+            padding: 15px;
+            border-radius: 12px;
         }
 
         .nav-link {
@@ -1548,6 +1627,144 @@ g<!DOCTYPE html>
             right: -80px;
         }
 
+        /* Resume Modal Styles */
+        .resume-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 3001;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .resume-modal.active {
+            display: flex;
+            opacity: 1;
+        }
+
+        .resume-modal-content {
+            position: relative;
+            max-width: 95%;
+            max-height: 95%;
+            background: var(--card-bg);
+            border: 2px solid var(--primary);
+            border-radius: 20px;
+            animation: modalSlideIn 0.4s ease-out;
+            box-shadow: 0 0 50px var(--glow-primary);
+            overflow: hidden;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .resume-modal-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--primary);
+            animation: closePulse 2s infinite;
+        }
+
+        @keyframes closePulse {
+            0%, 100% { box-shadow: 0 0 10px var(--glow-primary); }
+            50% { box-shadow: 0 0 25px var(--glow-primary); }
+        }
+
+        .resume-modal-close:hover {
+            color: var(--secondary);
+            background: var(--primary);
+            transform: rotate(90deg) scale(1.1);
+            box-shadow: 0 0 30px var(--glow-primary);
+        }
+
+        .resume-title {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary);
+            z-index: 10;
+            text-align: center;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: titleGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(0 0 10px var(--glow-primary)); }
+            50% { filter: drop-shadow(0 0 20px var(--glow-primary)); }
+        }
+
+        .matrix-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.3;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .resume-iframe {
+            width: 100%;
+            height: 90vh;
+            border: none;
+            border-radius: 15px;
+            z-index: 5;
+        }
+
+        /* Animated Border */
+        .resume-modal-content::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--tertiary), var(--primary));
+            border-radius: 22px;
+            z-index: 0;
+            animation: borderRotate 3s linear infinite;
+            background-size: 300% 300%;
+        }
+
+        @keyframes borderRotate {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
         /* ========================================
            NEW ANIMATED CERTIFICATES SECTION STYLES
            ======================================== */
@@ -1756,7 +1973,23 @@ g<!DOCTYPE html>
     <header id="header">
         <div class="header-container">
             <a href="#home" class="logo">VK</a>
-            <nav>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="nav-desktop">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#education" class="nav-link">Education</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#certifications" class="nav-link">Certifications</a>
+                <a href="#research" class="nav-link">Research</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </nav>
+            <nav class="nav-mobile">
                 <a href="#home" class="nav-link active">Home</a>
                 <a href="#about" class="nav-link">About</a>
                 <a href="#education" class="nav-link">Education</a>
@@ -1774,11 +2007,11 @@ g<!DOCTYPE html>
     <section id="home" class="hero">
         <div class="hero-container">
             <div class="hero-content">
-                <span class="hero-badge">Python Developer & Data Scientist</span>
+                <span class="hero-badge">Python Developer & Data Scientist & Data Analyst</span>
                 <h1 class="hero-title">
                     <span class="name">GORIGE VINOD KUMAR</span>
                 </h1>
-                <p class="hero-subtitle">Python Developer | Data Science Enthusiast | ML & AI</p>
+                <p class="hero-subtitle">Python Developer | Data Science Enthusiast | ML & AI | Data Analyst</p>
                 <p class="hero-description">
                     MCA Graduate from Aurora Deemed to be University with a passion for building intelligent solutions 
                     using Python, Machine Learning, Deep Learning, and Data Science.
@@ -1787,8 +2020,8 @@ g<!DOCTYPE html>
                     <a href="#projects" class="btn btn-primary">
                         <i class="fas fa-rocket"></i> View Projects
                     </a>
-                    <a href="https://drive.google.com/uc?export=download&id=1U2uQvubIoRDNjByBkWGt_jhPxQZSx-lF" download class="btn btn-secondary" style="background: var(--tertiary); color: var(--dark-bg); border: none;">
-                        <i class="fas fa-download"></i> Download Resume
+<a href="Resume u 2.pdf" target="_blank" class="btn btn-secondary" style="background: var(--tertiary); color: var(--dark-bg); border: none;">
+                        <i class="fas fa-file-pdf"></i> Download Resume
                     </a>
                     <a href="#contact" class="btn btn-secondary">
                         <i class="fas fa-envelope"></i> Contact Me
@@ -1824,6 +2057,7 @@ g<!DOCTYPE html>
                 </div>
             </div>
         </div>
+
     </section>
 
     <!-- About Section -->
@@ -1955,6 +2189,16 @@ g<!DOCTYPE html>
                     <span class="skill-badge">Seaborn</span>
                     <span class="skill-badge">TensorFlow</span>
                     <span class="skill-badge">Scikit-learn</span>
+                </div>
+            </div>
+            <div class="card skills-category">
+                <h3><i class="fas fa-chart-line"></i> Analytical skills</h3>
+                <div class="skill-badges">
+                    <span class="skill-badge">MS Excel</span>
+                    <span class="skill-badge">SQL</span>
+                    <span class="skill-badge">PowerBI</span>
+                    <span class="skill-badge">Tableau</span>
+                    <span class="skill-badge">R</span>
                 </div>
             </div>
         </div>
@@ -2358,7 +2602,6 @@ g<!DOCTYPE html>
                 <button type="submit" class="form-submit">
                     <i class="fas fa-paper-plane"></i> Send Message
                 </button>
-            </form>
         </div>
     </div>
 
@@ -2367,6 +2610,16 @@ g<!DOCTYPE html>
         <div class="cert-modal-content">
             <span class="cert-modal-close" onclick="closeCertModal()">&times;</span>
             <img id="certModalImage" src="" alt="Certificate">
+        </div>
+    </div>
+
+    <!-- Resume Modal -->
+    <div class="resume-modal" id="resumeModal">
+        <div class="resume-modal-content">
+            <span class="resume-modal-close" onclick="closeResumeModal()">&times;</span>
+            <h2 class="resume-title">Resume - GORIGE VINOD KUMAR</h2>
+            <canvas id="matrixCanvas" class="matrix-canvas"></canvas>
+            <iframe id="resumeIframe" src="Resume u 2.pdf" class="resume-iframe"></iframe>
         </div>
     </div>
 
@@ -2406,7 +2659,7 @@ g<!DOCTYPE html>
 
         // Active Navigation Highlight
         const sections = document.querySelectorAll('section, #home');
-        const navLinks = document.querySelectorAll('.nav-link');
+        const allNavLinks = document.querySelectorAll('.nav-link');
 
         window.addEventListener('scroll', () => {
             let current = '';
@@ -2418,12 +2671,44 @@ g<!DOCTYPE html>
                 }
             });
 
-            navLinks.forEach(link => {
+            allNavLinks.forEach(link => {
                 link.classList.remove('active');
                 if (link.getAttribute('href') === '#' + current) {
                     link.classList.add('active');
                 }
             });
+        });
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const navMobile = document.querySelector('.nav-mobile');
+            navMobile.classList.toggle('active');
+            
+            const hamburger = document.querySelector('.hamburger');
+            hamburger.classList.toggle('active');
+            
+            document.body.style.overflow = navMobile.classList.contains('active') ? 'hidden' : 'auto';
+        }
+
+        // Close mobile menu when clicking link
+        document.querySelectorAll('.nav-mobile .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                const navMobile = document.querySelector('.nav-mobile');
+                navMobile.classList.remove('active');
+                document.querySelector('.hamburger').classList.remove('active');
+                document.body.style.overflow = 'auto';
+            });
+        });
+
+        // Close mobile menu on window resize (desktop)
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768) {
+                const navMobile = document.querySelector('.nav-mobile');
+                const hamburger = document.querySelector('.hamburger');
+                navMobile.classList.remove('active');
+                hamburger.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
         });
 
         // Intersection Observer for Animations
@@ -2508,8 +2793,68 @@ g<!DOCTYPE html>
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Escape') {
                 closeCertModal();
+                closeResumeModal();
             }
         });
+
+        // Resume Modal Functions
+        function openResumeModal() {
+            document.getElementById('resumeModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+            startMatrixRain();
+        }
+
+        function closeResumeModal() {
+            document.getElementById('resumeModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+            stopMatrixRain();
+        }
+
+        // Matrix Rain Gaming Animation
+        let matrixCanvas, ctx, matrixChars, fontSize, columns, drops;
+        function startMatrixRain() {
+            matrixCanvas = document.getElementById('matrixCanvas');
+            ctx = matrixCanvas.getContext('2d');
+            
+            matrixCanvas.width = window.innerWidth;
+            matrixCanvas.height = window.innerHeight;
+            
+            matrixChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*()*&^%';
+            fontSize = 14;
+            columns = matrixCanvas.width / fontSize;
+            drops = Array(Math.floor(columns)).fill(1);
+
+            matrixCanvas.style.display = 'block';
+            animateMatrix();
+        }
+
+        function stopMatrixRain() {
+            if (matrixCanvas) {
+                matrixCanvas.style.display = 'none';
+            }
+        }
+
+        function animateMatrix() {
+            if (!ctx) return;
+
+            ctx.fillStyle = 'rgba(10, 10, 15, 0.05)';
+            ctx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+            
+            ctx.fillStyle = '#00ff41';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = matrixChars.charAt(Math.floor(Math.random() * matrixChars.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > matrixCanvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+
+            requestAnimationFrame(animateMatrix);
+        }
     </script>
 </body>
 </html>
